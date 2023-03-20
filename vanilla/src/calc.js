@@ -266,7 +266,7 @@ const handleMinMax = () => {
 }
 
 // Updates costs of a table giving a id
-const updateTable = id => {
+const updateTableTotal = id => {
   let durationTotal = 0
   let metalTotal = 0
   let crystalTotal = 0
@@ -307,7 +307,7 @@ const updateAllTotal = () => {
   let pointsTotal = 0
 
   IDS.forEach((id) => {
-    const TOTALS = updateTable(id)
+    const TOTALS = updateTableTotal(id)
     durationTotal += TOTALS[0]
     metalTotal += TOTALS[1]
     crystalTotal += TOTALS[2]

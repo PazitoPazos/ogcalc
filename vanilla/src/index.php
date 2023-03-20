@@ -104,7 +104,8 @@
               <tr id="metal-mine">
                 <td>Metal Mine</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -116,7 +117,8 @@
               <tr id="crystal-mine">
                 <td>Crystal Mine</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -128,7 +130,8 @@
               <tr id="deuterium-synthesizer">
                 <td>Deuterium Synthesizer</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -140,7 +143,8 @@
               <tr id="solar-plant">
                 <td>Solar Plant</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -152,7 +156,8 @@
               <tr id="fusion-reactor">
                 <td>Fusion Reactor</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -164,7 +169,8 @@
               <tr id="robotics-factory">
                 <td>Robotics Factory</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -176,7 +182,8 @@
               <tr id="nanite-reactor">
                 <td>Nanite Reactor</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -188,7 +195,8 @@
               <tr id="shipyard">
                 <td>Shipyard</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -200,7 +208,8 @@
               <tr id="metal-storage">
                 <td>Metal Storage</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -212,7 +221,8 @@
               <tr id="crystal-storage">
                 <td>Crystal Storage</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -224,7 +234,8 @@
               <tr id="deuterium-tank">
                 <td>Deuterium Tank</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -236,7 +247,8 @@
               <tr id="research-lab">
                 <td>Research Lab</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -248,7 +260,8 @@
               <tr id="terraformer">
                 <td>Terraformer</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -260,7 +273,8 @@
               <tr id="alliance-depot">
                 <td>Alliance Depot</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -272,7 +286,8 @@
               <tr id="missile-silo">
                 <td>Missile Silo</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -284,7 +299,8 @@
               <tr id="lunar-base">
                 <td>Lunar Base</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -296,7 +312,8 @@
               <tr id="sensor-phalanx">
                 <td>Sensor Phalanx</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -308,7 +325,8 @@
               <tr id="jump-gate">
                 <td>Jump Gate</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -345,7 +363,8 @@
               <tr id="espionage-technology">
                 <td>Espionage Technology</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -357,7 +376,8 @@
               <tr id="computer-technology">
                 <td>Computer Technology</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -369,7 +389,8 @@
               <tr id="weapons-technology">
                 <td>Weapons Technology</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -381,7 +402,8 @@
               <tr id="shielding-technology">
                 <td>Shielding Technology</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -393,7 +415,8 @@
               <tr id="armour-technology">
                 <td>Armour Technology</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -405,7 +428,8 @@
               <tr id="energy-technology">
                 <td>Energy Technology</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -417,7 +441,8 @@
               <tr id="hyperspace-technology">
                 <td>Hyperspace Technology</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -429,7 +454,8 @@
               <tr id="combustion-drive">
                 <td>Combustion Drive</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -441,7 +467,8 @@
               <tr id="impulse-drive">
                 <td>Impulse Drive</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -453,7 +480,8 @@
               <tr id="hyperspace-drive">
                 <td>Hyperspace Drive</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -465,7 +493,8 @@
               <tr id="laser-technology">
                 <td>Laser Technology</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -477,7 +506,8 @@
               <tr id="ion-technology">
                 <td>Ion Technology</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -489,7 +519,8 @@
               <tr id="plasma-technology">
                 <td>Plasma Technology</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -501,7 +532,8 @@
               <tr id="intergalactic-research-network">
                 <td>Intergalactic Research Network</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -513,7 +545,8 @@
               <tr id="astrophysics">
                 <td>Astrophysics</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>
@@ -525,7 +558,8 @@
               <tr id="graviton-technology">
                 <td>Graviton Technology</td>
                 <td>
-                  <input type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="from" type="number" name="level-input" value="0" min="0" max="99">
+                  <input class="to hidden" type="number" name="level-input" value="0" min="0" max="99">
                 </td>
                 <td></td>
                 <td></td>

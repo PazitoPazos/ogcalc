@@ -1,4 +1,4 @@
-// GENERAL
+// PARSING
 // Parse production time to d:hh:mm:ss
 const toDDHHMMSS = hr => {
   const SEC_NUM = hr * 3600
@@ -30,6 +30,7 @@ const toDDHHMMSS = hr => {
   return days + hours + ':' + minutes + ':' + seconds
 }
 
+// Parse units to millions (10^6 = 1M) and millards (10^9 = 1Mrd)
 const toMrdM = cost => {
   if (cost >= Math.pow(10, 15)) {
     return '+999999Mrd'
@@ -239,13 +240,32 @@ const setCosts = (stuff, numInput) => {
     producTime = shipDefProductionTime(costs[3], numInput)
   }
 
-  document.querySelector('#' + stuff + ' td:nth-child(' + 3 + ')').innerHTML = toDDHHMMSS(producTime)
+  const FINAL_COSTS = [producTime, calcCosts[0], calcCosts[1], calcCosts[2], calcCosts[3], calcCosts[4]]
+  updateRow(stuff, FINAL_COSTS)
 
-  for (let col = 0; col < calcCosts.length; col++) {
-    document.querySelector('#' + stuff + ' td:nth-child(' + (col + 4) + ')').innerHTML = toMrdM(calcCosts[col])
+  return FINAL_COSTS
+}
+
+// Set costs acumulative
+const setCostsAcumulative = (stuff, from, to) => {
+  const FINAL_COSTS = [0, 0, 0, 0, 0, 0]
+
+  if (from === to || from > to) {
+    updateRow(stuff, FINAL_COSTS)
+    return FINAL_COSTS
   }
 
-  return [calcCosts[0], calcCosts[1], calcCosts[2], calcCosts[3], calcCosts[4], producTime]
+  for (let i = from + 1; i <= to; i++) {
+    const ACTUAL_COST = setCosts(stuff, i)
+    ACTUAL_COST[ACTUAL_COST.length - 1] = parseFloat(ACTUAL_COST[ACTUAL_COST.length - 1])
+    for (let j = 0; j < FINAL_COSTS.length; j++) {
+      FINAL_COSTS[j] += ACTUAL_COST[j]
+    }
+  }
+
+  FINAL_COSTS[FINAL_COSTS.length - 1] = FINAL_COSTS[FINAL_COSTS.length - 1].toFixed(2)
+  updateRow(stuff, FINAL_COSTS)
+  return FINAL_COSTS
 }
 
 // Handle mins and maxs for each input
@@ -265,8 +285,41 @@ const handleMinMax = () => {
   })
 }
 
+// Select normal or acumulative method
+const changeMethod = () => {
+  let acumulative
+  const METHOD = document.querySelector('#calc-method').value
+  const TO_INPUTS = document.querySelectorAll('.to')
+  if (METHOD === 'normal') {
+    TO_INPUTS.forEach((inp) => {
+      if (!inp.classList.contains('hidden')) {
+        inp.classList.add('hidden')
+      }
+    })
+    acumulative = false
+  } else if (METHOD === 'acumulative') {
+    TO_INPUTS.forEach((inp) => {
+      if (inp.classList.contains('hidden')) {
+        inp.classList.remove('hidden')
+      }
+    })
+    acumulative = true
+  }
+
+  return acumulative
+}
+
+// Updates input row
+const updateRow = (stuff, costs) => {
+  document.querySelector('#' + stuff + ' td:nth-child(' + 3 + ')').innerHTML = toDDHHMMSS(costs[0])
+
+  for (let col = 1; col < costs.length; col++) {
+    document.querySelector('#' + stuff + ' td:nth-child(' + (col + 3) + ')').innerHTML = toMrdM(costs[col])
+  }
+}
+
 // Updates costs of a table giving a id
-const updateTableTotal = id => {
+const updateTableTotal = (id) => {
   let durationTotal = 0
   let metalTotal = 0
   let crystalTotal = 0
@@ -275,16 +328,24 @@ const updateTableTotal = id => {
   let pointsTotal = 0
 
   document.querySelectorAll('#' + id + '-table tr[id]:not(:last-child)').forEach((row) => {
+    const ACUMULATIVE = changeMethod()
     const STUFF = row.id
-    const LVL = row.querySelector('td:nth-child(2) > input').value - 0 // ? Es mejor parseInt o -0?
-    const TOTAL = setCosts(STUFF, LVL)
+    const FROM = row.querySelector('td:nth-child(2) input').value - 0 // ? Es mejor parseInt o -0?
+    let TO = 0
+    let TOTAL = [0, 0, 0, 0, 0, 0]
+    if ((id === 'building' || id === 'research') && ACUMULATIVE) {
+      TO = row.querySelector('td:nth-child(2) input.to').value - 0
+      TOTAL = setCostsAcumulative(STUFF, FROM, TO)
+    } else {
+      TOTAL = setCosts(STUFF, FROM)
+    }
 
-    durationTotal = durationTotal === 0 ? TOTAL[5] : (durationTotal += TOTAL[5])
-    metalTotal = metalTotal === 0 ? TOTAL[0] : (metalTotal += TOTAL[0])
-    crystalTotal = crystalTotal === 0 ? TOTAL[1] : (crystalTotal += TOTAL[1])
-    deuteriumTotal = deuteriumTotal === 0 ? TOTAL[2] : (deuteriumTotal += TOTAL[2])
-    energyTotal = energyTotal === 0 ? TOTAL[3] : (energyTotal += TOTAL[3])
-    pointsTotal = pointsTotal === 0 ? parseFloat(TOTAL[4]) : (pointsTotal += parseFloat(TOTAL[4]))
+    durationTotal = durationTotal === 0 ? TOTAL[0] : (durationTotal += TOTAL[0])
+    metalTotal = metalTotal === 0 ? TOTAL[1] : (metalTotal += TOTAL[1])
+    crystalTotal = crystalTotal === 0 ? TOTAL[2] : (crystalTotal += TOTAL[2])
+    deuteriumTotal = deuteriumTotal === 0 ? TOTAL[3] : (deuteriumTotal += TOTAL[3])
+    energyTotal = energyTotal === 0 ? TOTAL[4] : (energyTotal += TOTAL[4])
+    pointsTotal = pointsTotal === 0 ? parseFloat(TOTAL[5]) : (pointsTotal += parseFloat(TOTAL[5]))
   })
 
   document.querySelector('#' + id + '-total td:nth-child(2)').innerHTML = toDDHHMMSS(durationTotal)
@@ -353,8 +414,11 @@ document.addEventListener('DOMContentLoaded', () => {
       inp.value = 0
     })
 
-    updateAllTotal()
     document.getElementById('universe-speed').value = 1
+    document.getElementById('calc-method').value = 'normal'
+    changeMethod()
+
+    updateAllTotal()
   })
 
   // Set costs for each row

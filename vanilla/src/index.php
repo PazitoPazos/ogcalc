@@ -61,7 +61,7 @@
             </div>
             <div class="config-parameter">
               <label for="research-lab">Research Lab:</label>
-              <input type="number" name="level-input" id="research-lab" value="0" min="0" max="99">
+              <input type="number" name="level-input" id="research-lab" value="0" min="0" max="999">
             </div>
           </div>
           <div class="row-three">
@@ -73,8 +73,8 @@
       </div>
       <div class="spreadsheet">
         <div class="tabs-spreadsheet">
-          <div class="tab tab-active" id="buildings-tab">
-            <p>Buildings</p>
+          <div class="tab tab-active" id="building-tab">
+            <p>Building</p>
           </div>
           <div class="tab" id="research-tab">
             <p>Research</p>
@@ -87,10 +87,10 @@
           </div>
         </div>
         <div class="table-spreadsheet-wrap">
-          <table class="table-spreadsheet" id="buildings-table">
+          <table class="table-spreadsheet" id="building-table">
             <thead>
               <tr>
-                <th class="buildings-col">Buildings</th>
+                <th class="buildings-col">Building</th>
                 <th class="level-col">Level</th>
                 <th class="duration-col">Duration</th>
                 <th class="metal-col">Metal</th>
@@ -317,7 +317,7 @@
                 <td></td>
                 <td></td>
               </tr>
-              <tr id="buildings-total">
+              <tr id="building-total">
                 <td colspan="2">Total</td>
                 <td></td>
                 <td></td>

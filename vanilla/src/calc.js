@@ -49,6 +49,9 @@ const toMrdM = cost => {
 }
 
 // CONSTANTS
+// IDs
+const IDS = ['building', 'research', 'fleet', 'defense']
+
 // Buildings
 // Economy buildings
 const ECO_BUILDS = ['metal-mine', 'crystal-mine', 'deuterium-synthesizer', 'solar-plant', 'fusion-reactor']
@@ -131,21 +134,33 @@ const DEFENSES_MAP = new Map([
 ])
 
 // FUNCTIONS
+// Handle min time
+const minTime = (time) => {
+  const HR_SEC = 1 / 3600
+  if (time < HR_SEC) {
+    time = HR_SEC
+  }
+
+  return time
+}
+
 // Production time of all buildings
 const buildProductionTime = (metalCost, crystalCost) => {
   const UNI_SPEED = parseInt(document.querySelector('.config-parameter #universe-speed').value)
   const RF_LEVEL = parseInt(document.querySelector('.config-parameter #robotics-factory').value) // ? Gets robotics factory as a text??
   const NR_LEVEL = parseInt(document.querySelector('.config-parameter #nanite-reactor').value)
+  const TIME = (metalCost + crystalCost) / (2500 * (1 + RF_LEVEL) * UNI_SPEED * 2 ** NR_LEVEL)
 
-  return (metalCost + crystalCost) / (2500 * (1 + RF_LEVEL) * UNI_SPEED * 2 ** NR_LEVEL)
+  return minTime(TIME)
 }
 
 // Production time of all researchs
 const researchProductionTime = (metalCost, crystalCost) => {
   const UNI_SPEED = parseInt(document.querySelector('.config-parameter #universe-speed').value)
   const RL_LEVEL = parseInt(document.querySelector('.config-parameter #research-lab').value)
+  const TIME = (metalCost + crystalCost) / (1000 * (1 + RL_LEVEL * UNI_SPEED))
 
-  return (metalCost + crystalCost) / (1000 * (1 + RL_LEVEL * UNI_SPEED))
+  return minTime(TIME)
 }
 
 // Production time of all ships
@@ -153,15 +168,9 @@ const shipDefProductionTime = (strucIntegrity, amount) => {
   const UNI_SPEED = parseInt(document.querySelector('.config-parameter #universe-speed').value)
   const SY_LEVEL = parseInt(document.querySelector('.config-parameter #shipyard').value)
   const NR_LEVEL = parseInt(document.querySelector('.config-parameter #nanite-reactor').value)
+  const TIME = strucIntegrity / (2500 * (1 + SY_LEVEL) * UNI_SPEED * 2 ** NR_LEVEL)
 
-  const HR_SEC = 1 / 3600
-  let time = strucIntegrity / (2500 * (1 + SY_LEVEL) * UNI_SPEED * 2 ** NR_LEVEL)
-
-  if (time < HR_SEC) {
-    time = HR_SEC
-  }
-
-  return time * amount
+  return minTime(TIME) * amount
 }
 
 // Costs of economy builds (Mines, Solar Plant and Fusion Reactor)
@@ -209,12 +218,13 @@ const setCosts = (stuff, numInput) => {
 
   if (BUILDINGS_MAP.has(stuff)) {
     costs = BUILDINGS_MAP.get(stuff)
-    calcCosts = Object.values(buildResCosts(costs[0], costs[1], costs[2], costs[3], numInput))
-    producTime = buildProductionTime(calcCosts[0], calcCosts[1])
 
     if (ECO_BUILDS.includes(stuff)) {
       calcCosts = Object.values(ecoBuildCosts(costs[0], costs[1], costs[2], costs[3], costs[4], numInput))
+    } else {
+      calcCosts = Object.values(buildResCosts(costs[0], costs[1], costs[2], costs[3], numInput))
     }
+    producTime = buildProductionTime(calcCosts[0], calcCosts[1])
   } else if (RESEARCHS_MAP.has(stuff)) {
     costs = RESEARCHS_MAP.get(stuff)
     calcCosts = Object.values(buildResCosts(costs[0], costs[1], costs[2], costs[3], numInput))
@@ -225,7 +235,7 @@ const setCosts = (stuff, numInput) => {
     producTime = shipDefProductionTime(costs[4], numInput)
   } else if (DEFENSES_MAP.has(stuff)) {
     costs = DEFENSES_MAP.get(stuff)
-    calcCosts = Object.values(shipDefCosts(costs[0], costs[1], costs[2], costs[3], numInput))
+    calcCosts = Object.values(shipDefCosts(costs[0], costs[1], costs[2], 0, numInput))
     producTime = shipDefProductionTime(costs[3], numInput)
   }
 
@@ -255,44 +265,63 @@ const handleMinMax = () => {
   })
 }
 
-// Set costs everytime any input/select changes
-const updateRows = () => {
+// Updates costs of a table giving a id
+const updateTable = id => {
   let durationTotal = 0
   let metalTotal = 0
   let crystalTotal = 0
   let deuteriumTotal = 0
   let energyTotal = 0
   let pointsTotal = 0
-  document.querySelectorAll('tr[id]').forEach((row) => {
-    // const TABLE = row.parentNode.parentNode.id
-    // const ID = TABLE.slice(0, TABLE.indexOf('-tab'))
+
+  document.querySelectorAll('#' + id + '-table tr[id]:not(:last-child)').forEach((row) => {
     const STUFF = row.id
-    if (!STUFF.includes('-total')) {
-      const LVL = row.querySelector('td:nth-child(2) > input').value - 0 // ? Es mejor parseInt o -0?
-      const TOTAL = setCosts(STUFF, LVL)
+    const LVL = row.querySelector('td:nth-child(2) > input').value - 0 // ? Es mejor parseInt o -0?
+    const TOTAL = setCosts(STUFF, LVL)
 
-      durationTotal = durationTotal === 0 ? TOTAL[5] : (durationTotal += TOTAL[5])
-      metalTotal = metalTotal === 0 ? TOTAL[0] : (metalTotal += TOTAL[0])
-      crystalTotal = crystalTotal === 0 ? TOTAL[1] : (crystalTotal += TOTAL[1])
-      deuteriumTotal = deuteriumTotal === 0 ? TOTAL[2] : (deuteriumTotal += TOTAL[2])
-      energyTotal = energyTotal === 0 ? TOTAL[3] : (energyTotal += TOTAL[3])
-      pointsTotal = pointsTotal === 0 ? parseFloat(TOTAL[4]) : (pointsTotal += parseFloat(TOTAL[4]))
-    }
-
-    document.querySelector('#all-total td:nth-child(2)').innerHTML = toDDHHMMSS(durationTotal)
-    document.querySelector('#all-total td:nth-child(3)').innerHTML = toMrdM(metalTotal)
-    document.querySelector('#all-total td:nth-child(4)').innerHTML = toMrdM(crystalTotal)
-    document.querySelector('#all-total td:nth-child(5)').innerHTML = toMrdM(deuteriumTotal)
-    document.querySelector('#all-total td:nth-child(6)').innerHTML = toMrdM(energyTotal)
-    document.querySelector('#all-total td:nth-child(7)').innerHTML = toMrdM(pointsTotal.toFixed(2))
-
-    // document.querySelector('#' + ID + '-total td:nth-child(2)').innerHTML = toDDHHMMSS(durationTotal)
-    // document.querySelector('#' + ID + '-total td:nth-child(3)').innerHTML = toMrdM(metalTotal)
-    // document.querySelector('#' + ID + '-total td:nth-child(4)').innerHTML = toMrdM(crystalTotal)
-    // document.querySelector('#' + ID + '-total td:nth-child(5)').innerHTML = toMrdM(deuteriumTotal)
-    // document.querySelector('#' + ID + '-total td:nth-child(6)').innerHTML = toMrdM(energyTotal)
-    // document.querySelector('#' + ID + '-total td:nth-child(7)').innerHTML = toMrdM(pointsTotal.toFixed(2))
+    durationTotal = durationTotal === 0 ? TOTAL[5] : (durationTotal += TOTAL[5])
+    metalTotal = metalTotal === 0 ? TOTAL[0] : (metalTotal += TOTAL[0])
+    crystalTotal = crystalTotal === 0 ? TOTAL[1] : (crystalTotal += TOTAL[1])
+    deuteriumTotal = deuteriumTotal === 0 ? TOTAL[2] : (deuteriumTotal += TOTAL[2])
+    energyTotal = energyTotal === 0 ? TOTAL[3] : (energyTotal += TOTAL[3])
+    pointsTotal = pointsTotal === 0 ? parseFloat(TOTAL[4]) : (pointsTotal += parseFloat(TOTAL[4]))
   })
+
+  document.querySelector('#' + id + '-total td:nth-child(2)').innerHTML = toDDHHMMSS(durationTotal)
+  document.querySelector('#' + id + '-total td:nth-child(3)').innerHTML = toMrdM(metalTotal)
+  document.querySelector('#' + id + '-total td:nth-child(4)').innerHTML = toMrdM(crystalTotal)
+  document.querySelector('#' + id + '-total td:nth-child(5)').innerHTML = toMrdM(deuteriumTotal)
+  document.querySelector('#' + id + '-total td:nth-child(6)').innerHTML = toMrdM(energyTotal)
+  document.querySelector('#' + id + '-total td:nth-child(7)').innerHTML = toMrdM(pointsTotal.toFixed(2))
+
+  return [durationTotal, metalTotal, crystalTotal, deuteriumTotal, energyTotal, pointsTotal]
+}
+
+// Set costs everytime any input/select changes
+const updateAllTotal = () => {
+  let durationTotal = 0
+  let metalTotal = 0
+  let crystalTotal = 0
+  let deuteriumTotal = 0
+  let energyTotal = 0
+  let pointsTotal = 0
+
+  IDS.forEach((id) => {
+    const TOTALS = updateTable(id)
+    durationTotal += TOTALS[0]
+    metalTotal += TOTALS[1]
+    crystalTotal += TOTALS[2]
+    deuteriumTotal += TOTALS[3]
+    energyTotal += TOTALS[4]
+    pointsTotal += TOTALS[5]
+  })
+
+  document.querySelector('#all-total td:nth-child(2)').innerHTML = toDDHHMMSS(durationTotal)
+  document.querySelector('#all-total td:nth-child(3)').innerHTML = toMrdM(metalTotal)
+  document.querySelector('#all-total td:nth-child(4)').innerHTML = toMrdM(crystalTotal)
+  document.querySelector('#all-total td:nth-child(5)').innerHTML = toMrdM(deuteriumTotal)
+  document.querySelector('#all-total td:nth-child(6)').innerHTML = toMrdM(energyTotal)
+  document.querySelector('#all-total td:nth-child(7)').innerHTML = toMrdM(pointsTotal.toFixed(2))
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -324,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
       inp.value = 0
     })
 
-    updateRows()
+    updateAllTotal()
     document.getElementById('universe-speed').value = 1
   })
 
@@ -332,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('input[type=number], select').forEach((elem) => {
     elem.addEventListener('input', () => {
       handleMinMax() // Handle mins and maxs for each input
-      updateRows() // Set costs everytime any input/select changes
+      updateAllTotal() // Set costs everytime any input/select changes
     })
   })
 })

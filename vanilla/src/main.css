@@ -1,0 +1,223 @@
+/* RESET CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* GENERAL CSS */
+body {
+  background: url(../imgs/background.gif);
+  background-size: cover;
+  color: #bebebe;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.7rem;
+}
+
+input[name="level-input"] {
+  width: 40px;
+}
+
+input[name="amount-input"] {
+  width: 55px;
+}
+
+th {
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+th, td {
+  border: 3px solid #4a5560;
+  height: 21px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+  vertical-align: middle;
+}
+
+td:nth-child(n+2) {
+  text-align: center;
+}
+
+tr:nth-child(2n) {
+  background-color: #152c4ee1;
+}
+
+tr:last-child > td {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+/* MODIFIER */
+.hidden {
+  display: none;
+}
+
+/* FULL PAGE */
+.full-page {
+  height: 100vh;
+}
+
+.content-container {
+  display: grid;
+  position: relative;
+  background-color: #052e43e1;
+  border: 2px solid #4a5560;
+  grid-auto-rows: min-content;
+  height: 856px;
+  width: fit-content;
+  margin: 0 auto;
+  top: 48px;
+}
+
+/* PAGE TITLE */
+.page-title {
+  font-size: xx-large;
+  font-weight: bold;
+  width: fit-content;
+  margin: 4px;
+}
+
+/* CALC CONFIG */
+.calc-config-container {
+  border: 2px solid #4a5560;
+  margin: 4px;
+}
+
+.calc-config {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 36px;
+  margin: 4px;
+}
+
+.calc-config .row-one {
+  grid-column: 1/5;
+}
+
+.calc-config .row-two {
+  grid-column: 1/5;
+}
+
+.calc-config .row-three {
+  grid-column: 1/5;
+}
+
+.config-parameter {
+  display: inline-block;
+  border: 2px solid #4a5560;
+  margin: 4px;
+  padding: 4px;
+}
+
+.row-one .config-parameter {
+  width: 290px;
+}
+
+.row-two .config-parameter {
+  width: 210px;
+}
+
+.calc-config div:nth-child(2n-1) .config-parameter:last-child {
+  border: none;
+}
+
+/* SPREADSHEET TABLE */
+/* .spreadsheet {
+
+} */
+
+.tabs-spreadsheet {
+  margin-top: 4px;
+}
+
+.tabs-spreadsheet:first-child {
+  margin-left: 4px;
+}
+
+.tab {
+  display: inline-block;
+  border: 2px solid #4a5560;
+  padding: 4px;
+  margin-bottom: -3px;
+  cursor: pointer;
+}
+
+.tab-active {
+  border-top: 3px solid #4a5560;
+  border-left: 3px solid #4a5560;
+  border-right: 3px solid #4a5560;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.table-spreadsheet-wrap {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.table-spreadsheet {
+  width: 100%;
+}
+
+#total-table {
+  position: relative;
+  width: calc(100% - 18.7% - 3px);
+  top: 20px;
+  left: 18.7%;
+}
+
+/* COLUMNS */
+.buildings-col {
+  min-width: 150px;
+}
+
+.duration-col {
+  min-width: 118px;
+}
+
+.metal-col, .crystal-col, .deuterium-col, .energy-col, .points-col {
+  min-width: 110px;
+}

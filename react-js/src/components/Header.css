@@ -1,0 +1,54 @@
+.page-title {
+  font-size: xx-large;
+  font-weight: bold;
+  width: fit-content;
+  margin: 4px;
+}
+
+.config-container {
+  border: 2px solid #4a5560;
+  margin: 4px;
+}
+
+.config {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 36px;
+  margin: 4px;
+}
+
+.config .row-one {
+  grid-column: 1/5;
+}
+
+.config .row-two {
+  grid-column: 1/5;
+}
+
+.config .row-three {
+  grid-column: 1/5;
+}
+
+.config-parameter {
+  display: inline-block;
+  border: 2px solid #4a5560;
+  margin: 4px 8px 4px 4px;
+  padding: 4px;
+}
+
+.config-parameter input, select {
+  margin-left: 4px;
+}
+
+.row-one .config-parameter {
+  width: 290px;
+}
+
+.row-two .config-parameter {
+  width: 210px;
+}
+
+.config div:nth-child(2n-1) .config-parameter:last-child {
+  border: none;
+}

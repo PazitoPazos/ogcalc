@@ -1,0 +1,11 @@
+.App {
+  display: grid;
+  position: relative;
+  background-color: #052e43e1;
+  border: 2px solid #4a5560;
+  grid-auto-rows: min-content;
+  height: 856px;
+  width: fit-content;
+  margin: 0 auto;
+  top: 48px;
+}

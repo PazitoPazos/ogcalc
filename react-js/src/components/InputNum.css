@@ -1,0 +1,7 @@
+input[name="level-input"] {
+  width: 40px;
+}
+
+input[name="amount-input"] {
+  width: 55px;
+}

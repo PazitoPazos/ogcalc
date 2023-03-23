@@ -1,0 +1,67 @@
+/* MODIFIER */
+.hidden {
+  display: none;
+}
+
+/* SPREADSHEET TABLE */
+/* .spreadsheet {
+
+} */
+
+.tabs-spreadsheet {
+  margin-top: 4px;
+}
+
+.tabs-spreadsheet:first-child {
+  margin-left: 4px;
+}
+
+.tab {
+  display: inline-block;
+  border: 2px solid #4a5560;
+  margin-right: 4px;
+  padding: 4px;
+  margin-bottom: -3px;
+  cursor: pointer;
+}
+
+.tab-active {
+  border-top: 3px solid #4a5560;
+  border-left: 3px solid #4a5560;
+  border-right: 3px solid #4a5560;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.table-spreadsheet-wrap {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.table-spreadsheet {
+  width: 100%;
+}
+
+#total-table {
+  position: relative;
+  width: calc(100% - 18.7% - 3px);
+  top: 20px;
+  left: 18.7%;
+}
+
+/* COLUMNS */
+.stuff-col {
+  min-width: 150px;
+}
+
+.duration-col {
+  min-width: 118px;
+}
+
+.metal-col,
+.crystal-col,
+.deuterium-col,
+.energy-col,
+.points-col {
+  min-width: 110px;
+}

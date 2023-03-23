@@ -28,7 +28,7 @@
               </select>
             </div>
             <div class="config-parameter">
-              <label for="universe-speed">Universe speed:</label>
+              <label for="universe-speed">Universe Speed:</label>
               <select name="universe-speed" id="universe-speed">
                 <option selected value="1">x1</option>
                 <option value="2">x2</option>
@@ -90,7 +90,7 @@
           <table class="table-spreadsheet" id="building-table">
             <thead>
               <tr>
-                <th class="buildings-col">Building</th>
+                <th class="stuff-col">Building</th>
                 <th class="level-col">Level</th>
                 <th class="duration-col">Duration</th>
                 <th class="metal-col">Metal</th>
@@ -349,7 +349,7 @@
           <table class="table-spreadsheet hidden" id="research-table">
             <thead>
               <tr>
-                <th class="buildings-col">Research</th>
+                <th class="stuff-col">Research</th>
                 <th class="level-col">Level</th>
                 <th class="duration-col">Duration</th>
                 <th class="metal-col">Metal</th>
@@ -582,7 +582,7 @@
           <table class="table-spreadsheet hidden" id="fleet-table">
             <thead>
               <tr>
-                <th class="buildings-col">Fleet</th>
+                <th class="stuff-col">Fleet</th>
                 <th class="amount-col">Amount</th>
                 <th class="duration-col">Duration</th>
                 <th class="metal-col">Metal</th>
@@ -775,7 +775,7 @@
           <table class="table-spreadsheet hidden" id="defense-table">
             <thead>
               <tr>
-                <th class="buildings-col">Defense</th>
+                <th class="stuff-col">Defense</th>
                 <th class="amount-col">Amount</th>
                 <th class="duration-col">Duration</th>
                 <th class="metal-col">Metal</th>

@@ -5,3 +5,7 @@ input[name="level-input"] {
 input[name="amount-input"] {
   width: 55px;
 }
+
+input.to {
+  margin-left: 3px;
+}

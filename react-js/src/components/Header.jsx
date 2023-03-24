@@ -1,5 +1,7 @@
 import './Header.css'
-import InputNum from './InputNum.jsx'
+import InputNum from './InputNum'
+import { ids, allMaps } from '../data/data'
+import { changeMethod, updateAllTotal } from '../data/utils'
 
 export function Title() {
   return (
@@ -9,7 +11,7 @@ export function Title() {
   )
 }
 
-export function Select({ desc, name, id, options, values }) {
+export function Select({ desc, name, id, options, values, onChange = null }) {
   const opts = values.map((val, index) => {
     return (
       <option key={val} value={val}>
@@ -21,14 +23,42 @@ export function Select({ desc, name, id, options, values }) {
   return (
     <>
       <label htmlFor={name}>{desc}</label>
-      <select name={name} id={id}>
+      <select
+        name={name}
+        id={id}
+        onChange={onChange !== null ? onChange : null}
+      >
         {opts}
       </select>
     </>
   )
 }
 
+export function ButtonReset() {
+  const clearData = () => {
+    document.querySelectorAll('input[type=number]').forEach((inp) => {
+      inp.value = 0
+    })
+
+    document.getElementById('universe-speed').value = 1
+    document.getElementById('calc-method').value = 'normal'
+    changeMethod()
+
+    updateAllTotal(ids, allMaps)
+  }
+
+  return (
+    <button type='reset' id='clear-data' onClick={clearData}>
+      Clear Data
+    </button>
+  )
+}
+
 export function Config() {
+  const update = () => {
+    updateAllTotal(ids, allMaps)
+  }
+
   return (
     <div className='config'>
       <div className='row-one'>
@@ -39,6 +69,7 @@ export function Config() {
             id='calc-method'
             options={['Normal', 'Acumulative']}
             values={['normal', 'acumulative']}
+            onChange={update}
           />
         </div>
         <div className='config-parameter'>
@@ -59,6 +90,7 @@ export function Config() {
               'x10',
             ]}
             values={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+            onChange={update}
           />
         </div>
         <div className='config-parameter'>
@@ -96,9 +128,7 @@ export function Config() {
 
       <div className='row-three'>
         <div className='config-parameter'>
-          <button type='reset' id='clear-data'>
-            Clear Data
-          </button>
+          <ButtonReset />
         </div>
       </div>
     </div>
